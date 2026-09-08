@@ -9,7 +9,7 @@ class SiteTimezoneNormalisation
   end
 
   def call
-    return :unavailable unless crew.available?(job.window)
+    return :out_of_area unless crew.covers?(job.site)
 
     job.assign(crew)
   end
