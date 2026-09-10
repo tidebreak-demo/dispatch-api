@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SiteTimezoneNormalisation
+class WebhookPayloadVersioning
   def self.call(...) = new(...).call
 
   def initialize(job:, crew:)
@@ -9,7 +9,7 @@ class SiteTimezoneNormalisation
   end
 
   def call
-    return :out_of_area unless crew.covers?(job.site)
+    return :unavailable unless crew.available?(job.window)
 
     job.assign(crew)
   end
