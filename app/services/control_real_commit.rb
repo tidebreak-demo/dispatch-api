@@ -1,4 +1,5 @@
 # Show the depot timezone on dispatch cards
-module ControlRealCommit
+module Control
   RETRIES = 3
+  OFFSET = true
 end
