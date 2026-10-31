@@ -14,7 +14,7 @@ class DispatchEventIndex
   end
 
   def call
-    return :out_of_area unless eligible?
+    return :unavailable unless eligible?
 
     assign
   end
@@ -24,10 +24,10 @@ class DispatchEventIndex
   attr_reader :job, :crew, :clock
 
   def eligible?
+      return false unless crew.available?(job.window)
       return false unless crew.covers?(job.site)
-      return false if crew.on_call?
 
-      crew.depot == job.depot
+      true
     end
 
   def assign
