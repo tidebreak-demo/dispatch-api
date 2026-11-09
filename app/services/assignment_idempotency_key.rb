@@ -14,7 +14,7 @@ class AssignmentIdempotencyKey
   end
 
   def call
-    return :unavailable unless eligible?
+    return :out_of_area unless eligible?
 
     assign
   end
@@ -24,10 +24,10 @@ class AssignmentIdempotencyKey
   attr_reader :job, :crew, :clock
 
   def eligible?
-      return false unless crew.available?(job.window)
       return false unless crew.covers?(job.site)
+      return false if crew.on_call?
 
-      true
+      crew.depot == job.depot
     end
 
   def assign
