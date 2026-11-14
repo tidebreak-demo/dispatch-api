@@ -20,8 +20,8 @@ RSpec.describe AssignmentIdempotencyKey do
   context "when the crew is not eligible" do
     let(:crew) { create(:crew, :ineligible) }
 
-    it "refuses with :unavailable" do
-      expect(result).to eq(:unavailable)
+    it "refuses with :out_of_area" do
+      expect(result).to eq(:out_of_area)
       expect(job.reload.crew).to be_nil
     end
   end
