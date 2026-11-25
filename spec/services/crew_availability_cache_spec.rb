@@ -20,8 +20,8 @@ RSpec.describe CrewAvailabilityCache do
   context "when the crew is not eligible" do
     let(:crew) { create(:crew, :ineligible) }
 
-    it "refuses with :out_of_area" do
-      expect(result).to eq(:out_of_area)
+    it "refuses with :unavailable" do
+      expect(result).to eq(:unavailable)
       expect(job.reload.crew).to be_nil
     end
   end
